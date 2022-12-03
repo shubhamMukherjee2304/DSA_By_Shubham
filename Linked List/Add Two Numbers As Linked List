@@ -1,0 +1,61 @@
+import java.util.* ;
+import java.io.*; 
+/************************************************************
+
+    Following is the linked list node structure:
+    
+    class ListNode<T> {
+ 
+		public T data;
+		public ListNode<T> next;
+
+		public ListNode(T data) {
+			this.data = data;
+		}
+	}
+
+************************************************************/
+
+public class Solution {
+	public static ListNode<Integer> addTwoLists(ListNode<Integer> first, ListNode<Integer> second) {
+		// Write your code here.
+        first = reverseLL(first);
+        second = reverseLL(second);
+        ListNode third = new ListNode(0);
+        ListNode curr = third;
+        int sum = 0;
+        while (first!=null || second != null || sum > 0) {
+            if (first != null) {
+                sum += first.data;
+                first = first.next;
+                
+            }
+            if (second != null) {
+                sum += second.data;
+                second = second.next;
+                
+            }
+            curr.next = new ListNode(sum%10);
+            curr = curr.next;
+            sum /= 10;
+            
+        }
+        third = third.next;
+        third = reverseLL(third);
+        return third;
+	}
+    public static ListNode<Integer> reverseLL(ListNode<Integer> head) {
+        ListNode p = null; 
+        ListNode curr = head;
+        while(curr != null) {
+            ListNode temp = curr.next;
+            curr.next = p;
+            p = curr;
+            curr = temp;
+        }
+        return p;
+        
+    }
+    
+    
+}
