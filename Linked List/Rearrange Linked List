@@ -1,0 +1,44 @@
+import java.util.* ;
+import java.io.*; 
+/************************************************************
+
+    Following is the linked list node structure
+    
+    class Node {
+	int data;
+	Node next;
+
+	Node(int data) {
+		this.data = data;
+		this.next = null;
+	    }
+   }
+
+************************************************************/
+
+public class Solution {
+	public static Node rearrangeList(Node head) 
+    {
+		// Write your code here.
+        Node pointer = head;
+        while (pointer != null) {
+            pointer.next = reverseList(pointer.next);
+            pointer = pointer.next;
+            
+        }
+        return head;
+	}
+    public static Node reverseList(Node head) {
+        Node curr = head;
+        Node p = null;
+        Node nxt;
+        while (curr != null) {
+            nxt = curr.next;
+            curr.next = p;
+            p = curr;
+            curr = nxt;
+            
+        }
+        return p;
+    }
+}
